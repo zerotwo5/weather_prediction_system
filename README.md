@@ -8,7 +8,7 @@ A FastAPI app that predicts **rain tomorrow** using a Logistic Regression model.
 
 ```
 weather_api/
-├── main.py                  # FastAPI application
+├── app.py                  # FastAPI application
 ├── weather_model.joblib     # Trained Logistic Regression model
 ├── scaler.joblib            # StandardScaler for feature normalization
 ├── requirements.txt         # Python dependencies
