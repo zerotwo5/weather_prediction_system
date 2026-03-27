@@ -44,7 +44,6 @@ Server runs at: **http://127.0.0.1:8000**
 | GET    | `/health`   | Model info & feature list|
 | POST   | `/predict`  | Get rain prediction      |
 | GET    | `/docs`     | Swagger UI (auto-generated) |
-| GET    | `/redoc`    | ReDoc UI                 |
 
 ---
 
