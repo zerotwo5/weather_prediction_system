@@ -1,7 +1,6 @@
-
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
-from typing import Optional
 import joblib
 import numpy as np
 import os
@@ -11,6 +10,15 @@ app = FastAPI(
     title="🌧️ Weather Rain Prediction API",
     description="Predict whether it will rain tomorrow based on today's weather data.",
     version="1.0.0",
+)
+
+# ── CORS ──────────────────────────────────────────────────────────────────────
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # ── Load model & scaler ──────────────────────────────────────────────────────
@@ -66,9 +74,9 @@ class WeatherInput(BaseModel):
 
 # ── Response schema ───────────────────────────────────────────────────────────
 class PredictionResponse(BaseModel):
-    prediction:        int   = Field(..., description="0 = No Rain, 1 = Rain")
-    rain_tomorrow:     str   = Field(..., description="Human-readable result")
-    probability_rain:  float = Field(..., description="Probability of rain (%)")
+    prediction:          int   = Field(..., description="0 = No Rain, 1 = Rain")
+    rain_tomorrow:       str   = Field(..., description="Human-readable result")
+    probability_rain:    float = Field(..., description="Probability of rain (%)")
     probability_no_rain: float = Field(..., description="Probability of no rain (%)")
 
 # ── Routes ────────────────────────────────────────────────────────────────────
@@ -90,13 +98,14 @@ def health():
 @app.post("/predict", response_model=PredictionResponse, tags=["Prediction"])
 def predict(data: WeatherInput):
     try:
-        # Build dataframe in exact feature order
-        df = pd.DataFrame([data.model_dump()], columns=FEATURES)
+        # Build numpy array in exact feature order — no pandas needed
+        values = [getattr(data, feat) for feat in FEATURES]
+        X = np.array(values, dtype=float).reshape(1, -1)
 
         # Scale → predict
-        X_scaled = scaler.transform(df)
+        X_scaled = scaler.transform(X)
         pred      = int(model.predict(X_scaled)[0])
-        proba     = model.predict_proba(X_scaled)[0]  # [P(0), P(1)]
+        proba     = model.predict_proba(X_scaled)[0]   # [P(no rain), P(rain)]
 
         return PredictionResponse(
             prediction          = pred,
