@@ -7,7 +7,7 @@
 
 # 🌧️ RainCast — Weather Prediction System
 
-### AI-Powered Weather Forecasting · By [MD.Pranto025](https://github.com/pranto025)
+### AI-Powered Weather Forecasting 
 
 *Enter today's weather data and predict whether it will rain tomorrow — powered by Logistic Regression trained on the Australian Weather Dataset.*
 
@@ -41,7 +41,7 @@
 ## 📁 Project Structure
 
 ```
-weather_api/
+weather_prediction_system/
 ├── frontend/
 │   ├── index.html           # Main UI
 │   ├── style.css            # Atmospheric dark theme
