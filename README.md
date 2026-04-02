@@ -19,7 +19,7 @@
 
 <div align="center">
 
-| ☀️ Clear Skies Prediction | 🌧️ Rain Expected Prediction |
+| 🌧️ Rain Expected Prediction | ☀️ Clear Skies Prediction |
 |:-:|:-:|
 | ![Clear Skies](https://i.postimg.cc/XqxtYv4Z/E-NSDA200220prediction-system-frontend-index-html22.png) | ![Rain Expected](https://i.postimg.cc/NFYw0VTG/E-NSDA200220prediction-system-frontend-index-html.png) |
 
