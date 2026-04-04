@@ -42,6 +42,10 @@
 
 ```
 weather_prediction_system/
+├──Datset/
+│   ├── job_2_resource_weather Test data.csv                # Main Dataset for train
+│   ├── weather test data according to the frontend.xlsx    # for check after Deployment
+│
 ├── frontend/
 │   ├── index.html           # Main UI
 │   ├── style.css            # Atmospheric dark theme
