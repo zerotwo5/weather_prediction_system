@@ -171,11 +171,11 @@ curl -X POST http://127.0.0.1:8000/predict \
 | Property        | Details                              |
 |-----------------|--------------------------------------|
 | Algorithm       | Logistic Regression                  |
-| Dataset         | Australian Weather Dataset (BOM)     |
+| Dataset         | Australian Weather Dataset           |
 | Features        | 20 weather attributes                |
 | Preprocessing   | StandardScaler normalization         |
 | Output          | Binary (Rain / No Rain) + Probability|
-| Deployment      | Render (Free tier)                   |
+| Deployment      | Render (localhost/Free tier)         |
 
 ---
 
@@ -189,7 +189,7 @@ All categorical features must be **label-encoded** (numeric) before sending — 
 | `WindGustDir` | Categorical | 16-point compass → numeric         |
 | `WindDir9am`  | Categorical | 16-point compass → numeric         |
 | `WindDir3pm`  | Categorical | 16-point compass → numeric         |
-| All others    | Numeric     | Float values as-is                 |
+| All others    | Numeric     | Float values                       |
 
 ---
 
